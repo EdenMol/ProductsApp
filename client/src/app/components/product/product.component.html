@@ -1,0 +1,31 @@
+<p-card>
+  <div *ngIf="!isEditing; else temp">{{ product.title }}</div>
+  <button
+    pButton
+    type="button"
+    [icon]="isEditing ? 'pi pi-check' : 'pi pi-pencil'"
+    iconPos="right"
+    class="p-button-info"
+    (click)="editOrSave()"
+  ></button>
+  <!-- <button pButton type="button" icon="pi pi-check" iconPos="right"></button>
+  <p-button label="Edit" (click)="editOrSave()" icon="pi pi-check" iconPos="right"></p-button> -->
+
+  <button
+    pButton
+    type="button"
+    icon="pi pi-trash"
+    iconPos="right"
+    class="p-button-danger"
+    (click)="deleteProduct(product.id || '')"
+  ></button>
+</p-card>
+<ng-template #temp>
+  <input
+    class="input-title"
+    type="text"
+    pInputText
+    [(ngModel)]="inputState"
+    [value]="product.title"
+  />
+</ng-template>

@@ -1,0 +1,7 @@
+<ng-container *ngIf="products">
+  <app-products
+    (deleted)="deleteProduct($event)"
+    (edited)="saveProduct($event)"
+    [products]="products"
+  ></app-products>
+</ng-container>

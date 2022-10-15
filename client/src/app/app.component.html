@@ -1,10 +1,5 @@
 <h1>{{ title }}</h1>
-<ul>
-  <li *ngFor="let product of products">
-    {{ product.id }} - {{ product.title }} - {{ product.details }}
-  </li>
-</ul>
-<!-- <button type="button" class="btn btn-primary"
-          tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-    Simple demo
-  </button> -->
+<app-products></app-products>
+<!-- <a routerLink="/products-list">Products</a> -->
+
+<!-- <router-outlet></router-outlet> -->
