@@ -1,5 +1,9 @@
-<div class="row">
-    <div *ngFor="let product of products" class="col-2">
-        <app-product-card [product]="product"></app-product-card>
-    </div>
+<div>
+  <div *ngFor="let product of products">
+    <app-product-card
+      (deleted)="deleteProduct($event)"
+      (edited)="saveProduct($event)"
+      [product]="product"
+    ></app-product-card>
+  </div>
 </div>

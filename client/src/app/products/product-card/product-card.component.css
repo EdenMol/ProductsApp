@@ -1,0 +1,15 @@
+.product {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  width: 100%;
+}
+.product:hover {
+  opacity: 0.5;
+}
+.btn:hover {
+  background-color: lightblue;
+}
+.btn:active {
+  background-color: pink;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { IProduct } from 'src/app/types/i-product';
 
 @Component({
@@ -8,6 +8,27 @@ import { IProduct } from 'src/app/types/i-product';
 })
 export class ProductCardComponent implements OnInit {
   @Input() product: IProduct;
+  @Output() deleted = new EventEmitter<string>()
+  @Output() edited = new EventEmitter<IProduct>()
+
+  isEditing = false
+  inputTitle = ""
+  inputDetails = ""
+
+  deleteProduct(id: string) {
+    console.log('delete-card', id)
+    this.deleted.emit(id)
+  }
+  editOrSave() {
+    if (this.isEditing) {
+      this.save()
+    }
+    this.isEditing = !this.isEditing
+  }
+  save() {
+    console.log('edit-card', this.inputTitle, this.inputDetails, this.product.id)
+    this.edited.emit(<IProduct>{ ...this.product, title: this.inputTitle, details: this.inputDetails })
+  }
   constructor() { }
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-<div class="card-body">
+<div *ngIf="product">
   <div>
     <strong>Title:</strong>
     <input type="text" [value]="product.title" />
@@ -7,4 +7,22 @@
     <strong>Description:</strong>
     <input type="text" [value]="product.details" />
   </div>
+  <!-- <button
+    routerLink="/products"
+    pButton
+    type="button"
+    icon="pi pi-check"
+    iconPos="right"
+    class="btn p-button-info"
+    (click)="update(product.id || '')"
+  ></button>
+  <button
+    pButton
+    routerLink="/products"
+    type="button"
+    icon="pi pi-trash"
+    iconPos="right"
+    class="btn p-button-danger"
+    (click)="deleteProduct(product.id || '')"
+  ></button> -->
 </div>
