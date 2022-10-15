@@ -11,9 +11,7 @@ export class ProductCardComponent implements OnInit {
   @Output() deleted = new EventEmitter<string>()
   @Output() edited = new EventEmitter<IProduct>()
 
-  isEditing = false
-  inputTitle = ""
-  inputDetails = ""
+  isEditing = false 
 
   deleteProduct(id: string) {
     console.log('delete-card', id)
@@ -26,8 +24,8 @@ export class ProductCardComponent implements OnInit {
     this.isEditing = !this.isEditing
   }
   save() {
-    console.log('edit-card', this.inputTitle, this.inputDetails, this.product.id)
-    this.edited.emit(<IProduct>{ ...this.product, title: this.inputTitle, details: this.inputDetails })
+    console.log('edit-card', this.product.title, this.product.details, this.product.id)
+    this.edited.emit(<IProduct>{ ...this.product, title: this.product.title, details: this.product.details })
   }
   constructor() { }
 

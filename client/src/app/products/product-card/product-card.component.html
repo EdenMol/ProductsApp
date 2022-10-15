@@ -8,7 +8,7 @@
     iconPos="right"
     class="p-button-info"
     (click)="editOrSave()"
-    [disabled]="isEditing && inputTitle.length === 0"
+    [disabled]="isEditing && product.title.length === 0"
   ></button>
   <button
     pButton
@@ -17,7 +17,7 @@
     iconPos="right"
     class="p-button-danger"
     (click)="deleteProduct(product.id || '')"
-    [disabled]="isEditing && inputTitle.length === 0"
+    [disabled]="isEditing && product.title.length === 0"
   ></button>
 </article>
 
@@ -26,15 +26,15 @@
     class="input-title"
     type="text"
     pInputText
-    [(ngModel)]="inputTitle"
-    [value]="product.title"
+    [(ngModel)]="product.title"
   />
-  <label for="input-title">Title can't be empty</label>
+  <label class="warn" *ngIf="product.title.length === 0" for="input-title"
+    >Title can't be empty</label
+  >
   <input
     class="input-title"
     type="text"
     pInputText
-    [(ngModel)]="inputDetails"
-    [value]="product.details"
+    [(ngModel)]="product.details"
   />
 </ng-template>
