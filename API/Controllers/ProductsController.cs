@@ -56,7 +56,7 @@ namespace API.Controllers
 
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<ActionResult> DeleteProduct(int id){
             var productFound = await _context.Products.FindAsync(id);
             if (productFound == null)
