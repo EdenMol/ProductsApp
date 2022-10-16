@@ -5,9 +5,11 @@ add web api GET,DELETE,POST
 
 # Server 
 cd Api
-run- dotnet run
+
+run - dotnet run
 
 # Client
 cd client
-run ng serve 
+
+run - ng serve 
 
