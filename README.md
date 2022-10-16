@@ -3,11 +3,11 @@
 display product list 
 add web api GET,DELETE,POST
 
-#Server 
+# Server 
 cd Api
 run- dotnet run
 
-#Client
+# Client
 cd client
 run ng serve 
 
