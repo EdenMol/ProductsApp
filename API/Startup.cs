@@ -55,10 +55,10 @@ namespace API
             app.UseRouting();
             app.UseCors(policy => policy
             .AllowAnyHeader()
-            // .AllowAnyOrigin()
-            .AllowAnyMethod()
+            .AllowAnyOrigin()
+            .AllowAnyMethod());
             //.WithHeaders("Content-Type")
-            .WithOrigins("http://localhost:4200"));
+            // .WithOrigins("http://localhost:4200"));
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

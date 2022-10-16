@@ -29,6 +29,7 @@ namespace API.Controllers
         {
             return await _context.Products.FindAsync(id);
         }
+
         [HttpPut]
         public async Task<ActionResult> UpdateProduct(Product p)
         {
@@ -38,19 +39,43 @@ namespace API.Controllers
                 return BadRequest($"Product Id: {p.Id} cannot be found.");
             }
 
-            _context.Products.Update(productFound);
-            var returnVal = await _context.SaveChangesAsync();
-            return Ok(productFound.Id);
+            productFound.copyProductProperties(p);
+            _context.Update(productFound);
+
+            try
+            {
+                 _context.Products.Update(productFound);
+                 await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            var products = await _context.Products.ToListAsync();
+            return Ok(products);
+
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteProduct(int id){
             var productFound = await _context.Products.FindAsync(id);
-            _context.Products.Remove(productFound);
-            var returnVal = await _context.SaveChangesAsync();
-              return Ok(productFound.Id);
+            if (productFound == null)
+            {
+                return BadRequest($"Product Id: {id} cannot be found.");
+            }
+            try{
+                 _context.Products.Remove(productFound);
+                 await _context.SaveChangesAsync();
+            }
+             catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            var products = await _context.Products.ToListAsync();
+              return Ok(products);
         }
           
+
 
     }
 }

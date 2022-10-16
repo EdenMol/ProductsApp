@@ -12,7 +12,7 @@ export class ProductsService {
     baseUrl = environment.BASE_URL;
     products: IProduct[];
     httpOptions = {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*" , "Access-Control-Allow-Methods": "GET, DELETE, POST, PUT", "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With" })
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
     constructor(private http: HttpClient) {
@@ -30,17 +30,22 @@ export class ProductsService {
 
         this.http.delete<IProduct>
             (`${this.baseUrl}delete/${id}`, this.httpOptions)
-            .subscribe(
-                (deletedProduct) => {
-                    this.products = this.products.filter(item => item.id !== deletedProduct.id);
-                });
+            .subscribe();
+        // (deletedProduct) => {
+        //     this.products = this.products.filter(item => item.id !== deletedProduct.id);
+        // }
     }
     saveProduct(product: IProduct) {
         const indexOfProd = this.products.findIndex(item => item.id === product.id);
         this.products.splice(indexOfProd, 1, product);
-
+        console.log('here', product.id)
         this.http.put<IProduct>
             (`${this.baseUrl}products`, { product }, this.httpOptions)
-            .subscribe();
+            .subscribe(
+            // (response) => {
+            //     this.products = this.products.splice(indexOfProd, 1, response);
+            // }
+        );
+
     }
 }
