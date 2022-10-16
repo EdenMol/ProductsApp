@@ -27,18 +27,17 @@ export class ProductsService {
     deleteProduct(id: string) {
         if (!id) return;
         this.products = this.products.filter(item => item.id !== id);
-
         this.http.delete<IProduct>
             (`${this.baseUrl}delete/${id}`, this.httpOptions)
             .subscribe();
-        // (deletedProduct) => {
-        //     this.products = this.products.filter(item => item.id !== deletedProduct.id);
-        // }
+        (deletedProduct) => {
+            this.products = this.products.filter(item => item.id !== deletedProduct.id);
+        }
     }
     saveProduct(product: IProduct) {
         const indexOfProd = this.products.findIndex(item => item.id === product.id);
         this.products.splice(indexOfProd, 1, product);
-        console.log('here', product.id)
+
         this.http.put<IProduct>
             (`${this.baseUrl}products`, { product }, this.httpOptions)
             .subscribe(
