@@ -14,7 +14,6 @@ export class ProductCardComponent implements OnInit {
   isEditing = false 
 
   deleteProduct(id: string) {
-    console.log('delete-card', id)
     this.deleted.emit(id)
   }
   editOrSave() {
@@ -24,7 +23,6 @@ export class ProductCardComponent implements OnInit {
     this.isEditing = !this.isEditing
   }
   save() {
-    console.log('edit-card', this.product.title, this.product.details, this.product.id)
     this.edited.emit(<IProduct>{ ...this.product, title: this.product.title, details: this.product.details })
   }
   constructor() { }

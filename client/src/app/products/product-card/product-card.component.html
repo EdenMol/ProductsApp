@@ -1,6 +1,5 @@
 <article class="product">
   <div *ngIf="!isEditing; else temp">{{ product.title }}</div>
-  <!-- routerLink="/products/{{ product.id }}" -->
   <button
     pButton
     type="button"

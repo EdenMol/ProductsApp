@@ -28,13 +28,11 @@ export class ProductDetailComponent implements OnInit {
   }
 
   // update(id: string) {
-  //   console.log('update-detail', id)
   //   this.isEditing = !this.isEditing
   //   //this.productsService.updateOrCreateProduct(id)
 
   // }
   // deleteProduct(id: string) {
-  //   console.log('delete-detail', id)
   //   // this.productsService.deleteProduct(id)
   //   // this.deleted.emit(id)
   // }

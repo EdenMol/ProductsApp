@@ -42,6 +42,7 @@ namespace API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -52,7 +53,12 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyHeader().WithOrigins("http://localhost:4200"));
+            app.UseCors(policy => policy
+            .AllowAnyHeader()
+            // .AllowAnyOrigin()
+            .AllowAnyMethod()
+            //.WithHeaders("Content-Type")
+            .WithOrigins("http://localhost:4200"));
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

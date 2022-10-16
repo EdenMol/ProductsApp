@@ -28,7 +28,6 @@ export class ProductListComponent implements OnInit {
     }
   }
   deleteProduct(id: string) {
-    console.log('deleteProduct-list')
     this.productsService.deleteProduct(id)
   }
   saveProduct(product: IProduct) {
