@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { IProduct } from 'src/app/types/i-product';
 import { ProductsService } from 'src/app/services/products.service';
 import { ActivatedRoute } from '@angular/router';
@@ -10,11 +10,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductDetailComponent implements OnInit {
   product: IProduct
-  value = ""
-  isEditing = true
-  // @Output() edited = new EventEmitter<IProduct>()
-  // @Output() deleted = new EventEmitter<string>()
-
   constructor(private productsService: ProductsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -26,15 +21,12 @@ export class ProductDetailComponent implements OnInit {
       this.product = response;
     })
   }
+  editOrSave() {
+    this.productsService.saveProduct(<IProduct>{ ...this.product, title: this.product.title, details: this.product.details })
+  }
 
-  // update(id: string) {
-  //   this.isEditing = !this.isEditing
-  //   //this.productsService.updateOrCreateProduct(id)
-
-  // }
-  // deleteProduct(id: string) {
-  //   // this.productsService.deleteProduct(id)
-  //   // this.deleted.emit(id)
-  // }
+  deleteProduct(id: string) {
+    this.productsService.deleteProduct(id);
+  }
 
 }
