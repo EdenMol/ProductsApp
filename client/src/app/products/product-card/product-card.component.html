@@ -1,39 +1,22 @@
 <article class="product">
   <div *ngIf="!isEditing; else temp">{{ product.title }}</div>
-  <button
-    pButton
-    type="button"
-    [icon]="isEditing ? 'pi pi-check' : 'pi pi-pencil'"
-    iconPos="right"
-    class="p-button-info"
-    (click)="editOrSave()"
-    [disabled]="isEditing && product.title.length === 0"
-  ></button>
-  <button
-    pButton
-    type="button"
-    icon="pi pi-trash"
-    iconPos="right"
-    class="p-button-danger"
-    (click)="deleteProduct(product.id || '')"
-    [disabled]="isEditing && product.title.length === 0"
-  ></button>
+  <div>
+    <button
+      routerLink="/products/{{ product.id }}"
+      pButton
+      type="button"
+      icon="pi pi-pencil"
+      iconPos="right"
+      class="p-button-info"
+    ></button>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-trash"
+      iconPos="right"
+      class="p-button-danger"
+      (click)="deleteProduct(product.id)"
+    ></button>
+  </div>
 </article>
-
-<ng-template #temp>
-  <input
-    class="input-title"
-    type="text"
-    pInputText
-    [(ngModel)]="product.title"
-  />
-  <label class="warn" *ngIf="product.title.length === 0" for="input-title"
-    >Title can't be empty</label
-  >
-  <input
-    class="input-title"
-    type="text"
-    pInputText
-    [(ngModel)]="product.details"
-  />
-</ng-template>
+<ng-template #temp><app-product-detail></app-product-detail> </ng-template>
