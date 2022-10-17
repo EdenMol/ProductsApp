@@ -13,10 +13,7 @@ import { ProductDetailComponent } from './products/product-detail/product-detail
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 
-import { CardModule } from 'primeng/card';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
-
-
 
 @NgModule({
   declarations: [
@@ -34,7 +31,6 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
     FormsModule,
     ButtonModule,
     InputTextModule,
-    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
