@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { IProduct } from 'src/app/types/i-product';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-product-card',
@@ -8,24 +9,13 @@ import { IProduct } from 'src/app/types/i-product';
 })
 export class ProductCardComponent implements OnInit {
   @Input() product: IProduct;
-  @Output() deleted = new EventEmitter<string>()
-  @Output() edited = new EventEmitter<IProduct>()
-
-  isEditing = false 
+  isEditing: boolean = false
 
   deleteProduct(id: string) {
-    this.deleted.emit(id)
+    this.productsService.deleteProduct(id);
   }
-  editOrSave() {
-    if (this.isEditing) {
-      this.save()
-    }
-    this.isEditing = !this.isEditing
-  }
-  save() {
-    this.edited.emit(<IProduct>{ ...this.product, title: this.product.title, details: this.product.details })
-  }
-  constructor() { }
+
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
   }
