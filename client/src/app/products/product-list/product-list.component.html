@@ -1,9 +1,5 @@
 <div>
   <div *ngFor="let product of products">
-    <app-product-card
-      (deleted)="deleteProduct($event)"
-      (edited)="saveProduct($event)"
-      [product]="product"
-    ></app-product-card>
+    <app-product-card [product]="product"></app-product-card>
   </div>
 </div>

@@ -27,11 +27,4 @@ export class ProductListComponent implements OnInit {
         })
     }
   }
-  deleteProduct(id: string) {
-    this.productsService.deleteProduct(id)
-  }
-  saveProduct(product: IProduct) {
-    this.productsService.saveProduct(product)
-  }
-
 }
